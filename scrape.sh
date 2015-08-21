@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Make sure our env var is set
 if [ -z "$RESERVE_SITE" ]; then
