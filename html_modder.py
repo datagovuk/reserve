@@ -55,6 +55,8 @@ def mod_filepaths(args):
                     print stats.add('ERROR: Wrong num of corner search (simple google form) substitutions', '%s (%s)' % (html_filepath, number_of_subs))
                     are_errors = True
 
+                content, number_of_subs = search_hint_re.subn('Search site via Google', content)
+
         with open(html_filepath, 'wb') as f:
             f.write(content)
         print 'OK: Written %s' % html_filepath
@@ -64,20 +66,17 @@ def mod_filepaths(args):
     if are_errors:
         sys.exit(1)
 
-simple_google_form_html = '''
+simple_google_form_html = r'''
 <!-- Simple Google form -->
-<form action="http://google.co.uk/search" method="get">
+<form \1action="http://google.co.uk/search"\2>
       <input type="hidden" name="q" value="site:data.gov.uk" />
-      <label for="google-search" class="element-invisible">Google data.gov.uk:</label>
-
 '''
 
 #search_form_main = '{0}</body>'.format(banner_html)
 # Search form in the corner of the page:
-#   <form action="/data/search" class="input-group input-group-sm">
+#   <form action="search.html" class="input-group input-group-sm">
 # Search form on the data search page:
-#   <form class="form-search" action="/data/search" method="GET">
-search_form_re = re.compile(r'<form [^>]*action="\/data\/search"[^>]*>')
-search_form_end_tag_re = re.compile(re.escape('</form>" method="GET">'))
-
+#   <form class="form-search" action="search.html" method="GET">
+search_form_re = re.compile(r'<form ([^>]*)action="search.html"([^>]*)>')
+search_hint_re = re.compile('Search for data\.\.\.')
 mod_filepaths(args)
