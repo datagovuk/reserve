@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-# Make sure our env var is working
-: ${RESERVE_SITE:?"Need to set RESERVE_SITE non-empty"}
+# Make sure our env var is set
+if [ -z "$RESERVE_SITE" ]; then
+    echo "Need to set RESERVE_SITE"
+    exit 1
+fi
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
