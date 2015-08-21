@@ -77,6 +77,6 @@ simple_google_form_html = r'''
 #   <form action="search.html" class="input-group input-group-sm">
 # Search form on the data search page:
 #   <form class="form-search" action="search.html" method="GET">
-search_form_re = re.compile(r'<form ([^>]*)action="search.html"([^>]*)>')
+search_form_re = re.compile(r'<form ([^>]*)action="(?:search.html|\/data\/search)"([^>]*)>')
 search_hint_re = re.compile('Search for data\.\.\.')
 mod_filepaths(args)
