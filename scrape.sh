@@ -10,7 +10,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 # Scrape the webpages into a specific directory
 echo "+ Scraping site"
-wget -P static_site -X "/user,/feeds,/flag,/search/everything,/vote,/dataset"  --adjust-extension -p --convert-links --restrict-file-names=windows -m -e robots=off  --wait .5 -x http://$RESERVE_SITE
+wget -P static_site -X "/search,/user,/feeds,/flag,/vote"  --adjust-extension -p --convert-links --restrict-file-names=windows -m -e robots=off  --wait .5 -x http://$RESERVE_SITE
 
 # Call insert banner to make sure they each have a banne
 echo "+ Inserting banner"
