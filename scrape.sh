@@ -12,9 +12,9 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 echo "+ Scraping site"
 wget -P static_site -X "/search,/user,/feeds,/flag,/vote"  --adjust-extension -p --convert-links --restrict-file-names=windows -m -e robots=off  --wait .5 -x http://$RESERVE_SITE
 
-# Call insert banner to make sure they each have a banne
+# Mod the HTML to insert a banner and fix search etc
 echo "+ Inserting banner"
-python $DIR/insert_banner.py $DIR/banner.html $DIR/static_site
+python $DIR/html_modder.py $DIR/banner.html $DIR/static_site
 
 # Sync with S3
 echo "+ Syncing with S3"
