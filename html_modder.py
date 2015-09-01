@@ -13,6 +13,8 @@ parser.add_argument('html_filepath',  help='Folder containing HTML files to be m
 parser.add_argument('--search-simple-google', action="store_true", help='Just insert simple google search')
 args = parser.parse_args()
 
+stats = Stats()
+
 all_mods = not args.search_simple_google
 
 if all_mods:
@@ -22,7 +24,6 @@ if all_mods:
     body_tag_re = re.compile(re.escape("</body>"), re.IGNORECASE)
 
 def mod_filepaths(html_filepath, args):
-    stats = Stats()
     are_errors = False
 
     with open(html_filepath, 'rb') as f:
@@ -64,8 +65,6 @@ def mod_filepaths(html_filepath, args):
         f.write(content)
     print 'OK: Written %s' % html_filepath
 
-    print stats
-
     #if are_errors:
         #sys.exit(1)
 
@@ -89,4 +88,4 @@ for root, _, files in os.walk(args.html_filepath, topdown=False):
         if name.endswith(".html"):
             mod_filepaths(os.path.join(root, name), args)
 
-
+print stats
