@@ -1,1 +1,3 @@
 static_site/
+*.pyc
+
