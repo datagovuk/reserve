@@ -46,13 +46,17 @@ def mod_filepaths(html_filepath, args):
             print stats.add('WARN: Already has google simple form - ignoring', html_filepath)
         else:
             content, number_of_subs = search_form_re.subn(simple_google_form_html, content)
-            if number_of_subs == 2:
-                print stats.add('Main search box on data search page substituted', html_filepath)
-            elif number_of_subs == 1:
-                print stats.add('Corner search box substituted', html_filepath)
-            elif number_of_subs == 0:
-                print stats.add('ERROR: Wrong num of corner search (simple google form) substitutions', '%s (%s)' % (html_filepath, number_of_subs))
-                are_errors = True
+            try:
+                if number_of_subs == 2:
+                    print stats.add('Main search box on data search page substituted', html_filepath)
+                elif number_of_subs == 1:
+                    print stats.add('Corner search box substituted', html_filepath)
+                elif number_of_subs == 0:
+                    print stats.add('ERROR: Wrong num of corner search (simple google form) substitutions', '%s (%s)' % (html_filepath, number_of_subs))
+                    are_errors = True
+            except:
+                # Not interesed in utf8 errors atm
+                pass
 
             content, number_of_subs = search_hint_re.subn('Search site via Google', content)
 

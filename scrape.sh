@@ -17,7 +17,6 @@ wget -P static_site --reject "user*,search*" -X "/data/resource_cache*,/data/sea
 echo "+ Inserting banner"
 python $DIR/html_modder.py $DIR/banner.html $DIR/static_site --search-simple-google
 
-
 # Sync with S3
 echo "+ Syncing with S3"
 s3cmd sync -v $DIR/static_site/$RESERVE_SITE  s3://data.gov.uk/
