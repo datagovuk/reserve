@@ -44,7 +44,12 @@ def mod_filepaths(html_filepath, args):
     if all_mods or args.search_simple_google:
         # Search simple google
         if '<!-- Simple Google form -->' in content:
-            print stats.add('WARN: Already has google simple form - ignoring', html_filepath)
+            try:
+                print stats.add('WARN: Already has google simple form - ignoring', html_filepath)
+            except:
+                # utf8 errors...
+                pass
+
         else:
             content, number_of_subs = search_form_re.subn(simple_google_form_html, content)
             try:
