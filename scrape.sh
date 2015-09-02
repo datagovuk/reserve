@@ -19,6 +19,7 @@ python $DIR/html_modder.py $DIR/banner.html $DIR/static_site --search-simple-goo
 
 # Sync with S3
 echo "+ Syncing with S3"
-s3cmd sync -v $DIR/static_site/$RESERVE_SITE  s3://data.gov.uk/
+cd $DIR/static_site/$RESERVE_SITE
+s3cmd sync -v .  s3://data.gov.uk/
 
 
