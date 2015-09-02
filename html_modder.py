@@ -18,7 +18,7 @@ stats = Stats()
 all_mods = not args.search_simple_google
 
 if all_mods:
-    with open(getattr(args, 'banner-filepath'), 'rb') as f:
+    with open(getattr(args, 'banner_filepath'), 'rb') as f:
         banner_html = f.read()
     banner_and_body_tag = '{0}</body>'.format(banner_html)
     body_tag_re = re.compile(re.escape("</body>"), re.IGNORECASE)
